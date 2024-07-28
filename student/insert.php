@@ -2,6 +2,7 @@
 session_start();
 require 'vendor/autoload.php';
 require 'config/db.php';
+ob_start();
 if (isset($_POST['submit'])) {
     $f_name = $_POST['f_name'];
     $m_name = $_POST['m_name'];
@@ -14,24 +15,18 @@ if (isset($_POST['submit'])) {
     $phone_no = $_POST['phone_no'];
     $address = $_POST['address'];
     $year_of_study = $_POST['year_of_study'];
-    $hash_pass=password_hash($password, PASSWORD_BCRYPT);
-    if($role=='Student')
-    {
-        $role_id=1;
-    }elseif($role=='Teacher')
-    {
-        $role_id=2;
-    }
-    elseif($role=='Admin')
-    {
-        $role_id=3;
+    $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+    if ($role == 'Student') {
+        $role_id = 1;
+    } elseif ($role == 'Teacher') {
+        $role_id = 2;
+    } elseif ($role == 'Admin') {
+        $role_id = 3;
     }
     $qry = "INSERT INTO users VALUES(' ','$f_name','$m_name','$l_name','$email','$role_id','$dob','$hash_pass','$gender','$phone_no','$address','$year_of_study');";
-    if(mysqli_query($con,$qry))
-    {
+    if (mysqli_query($con, $qry)) {
         header('location:user.php');
     }
 }
-$content=ob_get_clean();
-include __DIR__.'/layout/app_layout2.php';
-?>
+$content = ob_get_clean();
+include __DIR__ . '/layout/app_layout2.php';

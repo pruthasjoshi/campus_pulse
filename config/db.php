@@ -1,6 +1,6 @@
 <?php
-require_once "vendor/autoload.php";
-// require_once 'C:\xampp\htdocs\php_project\vendor\autoload.php';
+// require_once "vendor/autoload.php";
+require_once 'D:\xampp\htdocs\php_project\vendor\autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
