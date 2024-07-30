@@ -17,6 +17,7 @@ if($total==1)
     $row=mysqli_fetch_array($res);
     $hashpass=$row['password'];
     $_SESSION['name']=$row['f_name'];
+    $_SESSION['id'] = $row['id'];
     $_SESSION['role_id']=$row['role_id'];
     $verify=password_verify($password,$hashpass);
     if($verify)

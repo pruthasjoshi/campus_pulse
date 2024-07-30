@@ -3,18 +3,13 @@ require '../vendor/autoload.php';
 require '../config/db.php';
 ob_start();
 session_start();
-if (!isset($_SESSION['email'])) {
-    header('location:login.php');
-}
+$id = $_GET['id'];
+$que = "SELECT * FROM users where id=$id";
+$res = mysqli_query($con, $que);
+$row = mysqli_fetch_assoc($res);
 ?>
 <div class="row">
     <div class="col-md-12">
-        <?php
-        $id = $_GET['id'];
-        $que = "SELECT * FROM users where id=$id";
-        $res = mysqli_query($con, $que);
-        $row = mysqli_fetch_assoc($res);
-        ?>
         <div class="col-md-auto">
             <div class="card">
                 <div class="card-header">
@@ -42,8 +37,26 @@ if (!isset($_SESSION['email'])) {
                                     <input type="email" name="email" class="form-control" id="email" value=<?php echo $row['email'] ?>><br>
                                 </div>
                                 <div class="form-group col-md-6">
+                                    <?php
+                                    if ($_SESSION['role_id'] == 1) {
+                                        $role = 'Student';
+                                    }
+                                    if ($_SESSION['role_id'] == 2) {
+                                        $role = 'Teacher';
+                                    }
+                                    if ($_SESSION['role_id'] == 3) {
+                                        $role = 'Admin';
+                                    } ?>
+                                    <label for="role">Role:</label>
+                                    <select class="form-control" name="role" value="<?php echo $role ?>">
+                                        <option>Student</option>
+                                        <option>Teacher</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </div><br>
+                                <div class="form-group col-md-6">
                                     <label for="Date_Of_Birth"> Date-Of-Birth :</label><br>
-                                    <input type="date" name="dob" class="form-control" id="Date_Of_Birth" value=<?php echo $row['dob'] ?>><br>
+                                    <input type="date" name="dob" class="form-control" id="dob" value=<?php echo $row['dob'] ?>><br>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="gender"> Gender :</label><br>
@@ -64,6 +77,9 @@ if (!isset($_SESSION['email'])) {
                                     <label for="year_of_study">Year of study :</label><br>
                                     <input type="date" name="year_of_study" class="form-control" id="year_of_study" value=<?php echo $row['year_of_study'] ?>><br>
                                 </div>
+                                <br>
+                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                <br>
                                 <input class="btn btn-primary" type="submit" name="edit" value="Edit">
                                 </br>
                             </b>

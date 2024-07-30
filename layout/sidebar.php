@@ -20,11 +20,25 @@ if(!isset($_SESSION['email']))
                     Users
                 </a>
                 <?php } ?>
+                <?php if($_SESSION['role_id']>1)
+                {?>
+                    <a class="nav-link" href="attendance.php ">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Attendance
+                </a>
+                <?php } ?>
                 <?php if($_SESSION['role_id']==1)
                 {?>
                 <a class="nav-link" href="personal_info.php ">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    personal
+                    Personal
+                </a>
+                <?php } ?>
+                <?php if($_SESSION['role_id']==1)
+                {?>
+                <a class="nav-link" href="attendance_view.php ">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Attendance
                 </a>
                 <?php } ?>
                 <a class="nav-link" href="../login.php ">

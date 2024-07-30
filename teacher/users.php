@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 require '../config/db.php';
 $page_title = "users";
 ?>
@@ -24,11 +25,12 @@ $page_title = "users";
         <th>year of study</th>
     </tr>
     <?php
-    $qry = "SELECT * From users;";
+    $qry = "SELECT * From users where role_id=1;";
     $res = mysqli_query($con, $qry);
     if (!$res) {
         die("query failed");
-    } else {
+    }
+    else{
         while ($row = $res->fetch_assoc()) {
     ?>
             <tr>
