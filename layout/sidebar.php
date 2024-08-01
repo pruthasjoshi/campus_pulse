@@ -8,7 +8,6 @@ if(!isset($_SESSION['email']))
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading">Core</div>
                 <a class="nav-link" href="index.php ">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
@@ -20,14 +19,8 @@ if(!isset($_SESSION['email']))
                     Users
                 </a>
                 <?php } ?>
-                <?php if($_SESSION['role_id']>1)
-                {?>
-                    <a class="nav-link" href="attendance.php ">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Attendance
-                </a>
-                <?php } ?>
-                <?php if($_SESSION['role_id']==1)
+                <?php
+                if($_SESSION['role_id']==1)
                 {?>
                 <a class="nav-link" href="personal_info.php ">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -37,6 +30,32 @@ if(!isset($_SESSION['email']))
                 <?php if($_SESSION['role_id']==1)
                 {?>
                 <a class="nav-link" href="attendance_view.php ">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    View Attendance
+                </a>
+                <?php } ?>
+                <?php if ($_SESSION['role_id'] == 2) { ?>
+                    <a class="nav-link" href="create_assignment.php">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Create Assignment
+                    </a>
+                <?php } ?>
+                <?php if ($_SESSION['role_id'] == 2) { ?>
+                    <a class="nav-link" href="grade_assignment.php">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Grade Assignment
+                    </a>
+                <?php } ?>
+                <?php if ($_SESSION['role_id'] == 1) { ?>
+                    <a class="nav-link" href="submit_assignment.php">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Submit Assignment
+                    </a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role_id']>=2)
+                {?>
+                    <a class="nav-link" href="attendance.php ">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Attendance
                 </a>
@@ -52,15 +71,15 @@ if(!isset($_SESSION['email']))
             <?php echo $_SESSION['name'];
                 if($_SESSION['role_id']==1)
                     {
-                        echo "student";
+                        echo "(Student)";
                     }
                     if($_SESSION['role_id']==2)
                     {
-                        echo "teacher";
+                        echo "(Teacher)";
                     }
                     if($_SESSION['role_id']==3)
                     {
-                        echo "admin";
+                        echo "(Admin)";
                     }
             ?>
         </div>

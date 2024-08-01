@@ -6,7 +6,7 @@ $qry = "SELECT * FROM USERS where role_id=1;";
 $result = mysqli_query($con, $qry);
 ?>
 <section>
-    <form action="attendance_report.php" method="post">
+    <form action="attendance_insert.php" method="post">
         <div class="col-md-2">
             <div class="form-group">
                 <label for="date">Date:</label>
