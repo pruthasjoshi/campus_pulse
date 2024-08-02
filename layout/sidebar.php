@@ -64,6 +64,13 @@ if(!isset($_SESSION['email']))
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Login
                 </a>
+                <?php if($_SESSION['role_id']==3)
+                {?>
+                    <a class="nav-link" href="department_table.php ">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Department
+                </a>
+                <?php } ?>
             </div>
         </div>
         <div class="sb-sidenav-footer">
